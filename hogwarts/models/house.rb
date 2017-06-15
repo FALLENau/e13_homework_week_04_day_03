@@ -28,11 +28,17 @@ class House
   end
 
   def self.find( id )
-    sql = "SELECT * FROM houses WHERE id=#{id}"
+    sql = "SELECT * FROM houses WHERE id = #{id}"
     house = SqlRunner.run( sql )
     result = House.new( house.first )
 
     return result
+  end
+
+  def self.map_houses(sql)
+    houses = SqlRunner.run(sql)
+    return houses.map { |house| House.new( house )}#<==not tested.
+
   end
 
 end
